@@ -11,7 +11,6 @@ void ft_swap(t_pila *pila) // ojo al orden fifo
 		return ;
 	}
 	
-	//printf("hola");
 	nodo_primero = ft_cortar_nodo_inicio(pila);
 	nodo_segundo = ft_cortar_nodo_inicio(pila);
 	ft_unir_nodo_inicio(pila, nodo_primero);

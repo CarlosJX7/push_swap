@@ -168,29 +168,8 @@ int main(int argc, char const *argv[])
         ft_agregar_nodo(pila_A, ft_atoi(argv[i]));
         i++;
     }
-
-
-    //ft_imprimir_pilas(pila_A, pila_B);
-    //ft_push(pila_A, pila_B);
-    //printf("SWAP\n");
-    //ft_swap(pila_A);
-    //ft_imprimir_pilas(pila_A, pila_B);
-    //ft_imprimir_arry(ft_pila_to_array(pila_A), pila_A->cantidad_elementos);
-    //ft_push(pila_A, pila_B);
-    //ft_imprimir_arry(ft_pila_to_array(pila_B), pila_B->cantidad_elementos);
     menu_interactivo_flechas(pila_A, pila_B);
-    /*
-    array_enteros = ft_pila_to_array(pila_A);
-    printf("Imprimiendo array sin modificar\n");
-    ft_imprimir_arary(array_enteros, pila_A->cantidad_elementos);
-    ft_rotate(pila_A);
-    printf("Imprimiendo array ft_rotate\n");
-    ft_imprimir_arary(ft_pila_to_array(pila_A), pila_A->cantidad_elementos);
-    printf("Imprimiendo array ft_rotate_inverso\n");
-    ft_rotate_inverso(pila_A);
-    ft_imprimir_arary(ft_pila_to_array(pila_A), pila_A->cantidad_elementos);
-    */
-   
+
    ft_vaciar_pila(pila_A);
    ft_vaciar_pila(pila_B);
     return 0;
