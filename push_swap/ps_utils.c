@@ -41,6 +41,7 @@ int *ft_ordenar_array(int * array, t_pila *pila)
 {
 	int *array_ordenado;
 	t_nodo *nodo_posicion;
+	int i;
 	array_ordenado = malloc(sizeof(int) * pila->cantidad_elementos);
 	int valor_menor;
 	valor_menor = nodo_posicion->valor;
