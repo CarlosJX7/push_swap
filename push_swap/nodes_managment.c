@@ -12,6 +12,7 @@ void ft_agregar_nodo(t_pila *pila, int valor_main)
 	
 	nodo->anterior_nodo = NULL;
 	nodo->siguiente_nodo = NULL;
+	nodo->index = NULL;
 	nodo->valor = valor_main;
 	
 	if (pila->cantidad_elementos == 0)

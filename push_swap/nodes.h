@@ -8,6 +8,7 @@ typedef struct s_nodo
     int valor;
     struct s_nodo *siguiente_nodo;
     struct s_nodo *anterior_nodo;
+    int index;
 }t_nodo;
 
 typedef struct s_pila
