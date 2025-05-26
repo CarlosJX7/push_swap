@@ -37,24 +37,49 @@ int	ft_atoi(const char *str)
 	return (sign * nbr);
 }
 
-int *ft_ordenar_array(int * array, t_pila *pila)
+int ft_buscar_en_array(int *array, int n, int size)
 {
-	int *array_ordenado;
-	t_nodo *nodo_posicion;
 	int i;
-	array_ordenado = malloc(sizeof(int) * pila->cantidad_elementos);
-	int valor_menor;
-	valor_menor = nodo_posicion->valor;
-	while (nodo_posicion->siguiente_nodo != NULL)
+
+	i = 0;
+	while (i < size)
 	{
-		if (nodo_posicion->valor < valor_menor)
+		if (array[i] == n)
 		{
-			valor_menor = nodo_posicion->valor;
+			return 1;
 		}
 	}
-	
-	array_ordenado[i] = valor_menor;
-	nodo_posicion = nodo_posicion->siguiente_nodo;
-
 	return 0;
 }
+
+int *ft_ordenar_array(int *array, t_pila *pila)
+{
+	int posicion;
+	int *array_ordenado;
+	int flecha;
+	int n;
+
+	flecha = 0;
+	posicion = 0;
+	array_ordenado = malloc(sizeof(int)*pila->cantidad_elementos);
+	if (!array_ordenado)
+		return 0;
+	while (flecha < pila->cantidad_elementos)
+	{
+		posicion = flecha;
+		n = array[flecha];
+		while (posicion < pila->cantidad_elementos)
+		{
+			if (array_ordenado[posicion] < n && ft_buscar_en_array(array ,array_ordenado[posicion], pila->cantidad_elementos))
+			{
+				n = array_ordenado[posicion];
+			}
+			posicion++; 
+		}
+		array_ordenado[flecha] = n;
+		flecha++;
+	}
+	
+	return array_ordenado;
+}
+
