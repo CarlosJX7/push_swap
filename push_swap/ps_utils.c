@@ -48,6 +48,7 @@ int ft_buscar_en_array(int *array, int n, int size)
 		{
 			return 1;
 		}
+		i++;
 	}
 	return 0;
 }
