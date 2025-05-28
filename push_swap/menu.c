@@ -180,7 +180,16 @@ int main(int argc, char const *argv[])
         ft_agregar_nodo(pila_A, ft_atoi(argv[i]));
         i++;
     }
-    menu_interactivo_flechas(pila_A, pila_B);
+    printf("Imprimimos el array sin ordenar\n");
+    int *pila_array = ft_pila_to_array(pila_A);
+    ft_imprimir_arry(pila_array, pila_A->cantidad_elementos);
+
+    printf("Procedemos a ordenar el array\n");
+    int *array_ordenado = ft_ordenar_array(pila_array, pila_A->cantidad_elementos);
+    printf("Conseguimos salir de la funcion de ordenar el arry\n");
+    ft_imprimir_arry(array_ordenado, pila_A->cantidad_elementos);
+    
+    //menu_interactivo_flechas(pila_A, pila_B);
 
    ft_vaciar_pila(pila_A);
    ft_vaciar_pila(pila_B);

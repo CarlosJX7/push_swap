@@ -52,7 +52,7 @@ int ft_buscar_en_array(int *array, int n, int size)
 	return 0;
 }
 
-int *ft_ordenar_array(int *array, t_pila *pila)
+int *ft_ordenar_array(int *array, int cantidad)
 {
 	int posicion;
 	int *array_ordenado;
@@ -61,16 +61,16 @@ int *ft_ordenar_array(int *array, t_pila *pila)
 
 	flecha = 0;
 	posicion = 0;
-	array_ordenado = malloc(sizeof(int)*pila->cantidad_elementos);
+	array_ordenado = malloc(sizeof(int)*cantidad);//
 	if (!array_ordenado)
 		return 0;
-	while (flecha < pila->cantidad_elementos)
+	while (flecha < cantidad)//
 	{
 		posicion = flecha;
 		n = array[flecha];
-		while (posicion < pila->cantidad_elementos)
+		while (posicion < cantidad)//
 		{
-			if (array_ordenado[posicion] < n && ft_buscar_en_array(array ,array_ordenado[posicion], pila->cantidad_elementos))
+			if (array_ordenado[posicion] < n && ft_buscar_en_array(array ,array_ordenado[posicion], cantidad))//
 			{
 				n = array_ordenado[posicion];
 			}
