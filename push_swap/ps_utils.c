@@ -1,5 +1,5 @@
 #include "ps_utils.h"
-
+#include <stdlib.h>
 
 int	ft_isspace(char c)
 {
@@ -37,50 +37,54 @@ int	ft_atoi(const char *str)
 	return (sign * nbr);
 }
 
-int ft_buscar_en_array(int *array, int n, int size)
+
+int	ft_buscar_en_array(int *array, int n, int size)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < size)
 	{
 		if (array[i] == n)
-		{
-			return 1;
-		}
+			return (1);
 		i++;
 	}
-	return 0;
+	return (0);
 }
 
-int *ft_ordenar_array(int *array, int cantidad)
+int	*ft_ordenar_array(int *array, int cantidad)
 {
-	int posicion;
-	int *array_ordenado;
-	int flecha;
-	int n;
+	int	*array_ordenado;
+	int	i;
+	int	min;
+	int	min_idx;
+	int	ordenados;
 
-	flecha = 0;
-	posicion = 0;
-	array_ordenado = malloc(sizeof(int)*cantidad);//
+	array_ordenado = (int *)malloc(sizeof(int) * cantidad);
 	if (!array_ordenado)
-		return 0;
-	while (flecha < cantidad)//
+		return (NULL);
+	ordenados = 0;
+	while (ordenados < cantidad)
 	{
-		posicion = flecha;
-		n = array[flecha];
-		while (posicion < cantidad)//
+		min = 2147483647; // INT_MAX
+		min_idx = -1;
+		i = 0;
+		while (i < cantidad)
 		{
-			if (array_ordenado[posicion] < n && ft_buscar_en_array(array ,array_ordenado[posicion], cantidad))//
+			if (!ft_buscar_en_array(array_ordenado, array[i], ordenados)
+				&& array[i] < min)
 			{
-				n = array_ordenado[posicion];
+				min = array[i];
+				min_idx = i;
 			}
-			posicion++; 
+			i++;
 		}
-		array_ordenado[flecha] = n;
-		flecha++;
+		if (min_idx != -1)
+		{
+			array_ordenado[ordenados] = array[min_idx];
+			ordenados++;
+		}
 	}
-	
-	return array_ordenado;
+	return (array_ordenado);
 }
 
