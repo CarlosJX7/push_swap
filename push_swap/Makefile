@@ -28,6 +28,6 @@ fclean: clean
 re: fclean all
 
 run:
-	./push_swap 10 2 30 4 50 6 70 8 90
+	./push_swap 90 80 70 60 50 40 30 20 10 0
 
 .PHONY: all clean fclean re

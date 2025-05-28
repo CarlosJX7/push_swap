@@ -28,7 +28,7 @@ static void ft_imprimir_pilas(t_pila *pilaA, t_pila *pilaB)
     {
         if (a)
         {
-            printf("   %6d", a->valor);
+            printf("   %6d, indice = %d", a->valor, a->index);
             a = a->siguiente_nodo;
         }
         else
@@ -38,7 +38,7 @@ static void ft_imprimir_pilas(t_pila *pilaA, t_pila *pilaB)
 
         if (b)
         {
-            printf("%6d", b->valor);
+            printf("%6d, indice = %d", b->valor, b->index);
             b = b->siguiente_nodo;
         }
         printf("\n");
@@ -189,7 +189,8 @@ int main(int argc, char const *argv[])
     printf("Conseguimos salir de la funcion de ordenar el arry\n");
     ft_imprimir_arry(array_ordenado, pila_A->cantidad_elementos);
     
-    //menu_interactivo_flechas(pila_A, pila_B);
+    ft_pila_indices(pila_A, array_ordenado);
+    menu_interactivo_flechas(pila_A, pila_B);
 
    ft_vaciar_pila(pila_A);
    ft_vaciar_pila(pila_B);

@@ -26,3 +26,26 @@ int *ft_pila_to_array(t_pila *pila)
 	}
 	return lista;
 }
+
+void ft_pila_indices(t_pila *pila, int *array_ordenado)
+{
+	t_nodo *nodo;
+	int i;
+
+	i = 0;
+	nodo = pila->primer_elemento;
+	while (nodo != NULL)
+	{
+		while (i < pila->cantidad_elementos)
+		{
+			if (nodo->valor == array_ordenado[i])
+			{
+				nodo->index = pila->cantidad_elementos - i;
+			}
+			i++;
+		}
+		i = 0; //falto
+		nodo = nodo->siguiente_nodo;
+	}
+	
+}
