@@ -51,7 +51,7 @@ void imprimir_pila(t_pila *pila)
     t_nodo *node;
 
     node = pila->primer_elemento;
-
+    printf("INICIO PILA\n");
     while (node != NULL)
     {
         printf("Valor >%d<, indice >%d<\n", node->valor, node->index);

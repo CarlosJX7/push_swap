@@ -14,7 +14,6 @@ typedef struct s_nodo
 typedef struct s_pila
 {
     t_nodo *primer_elemento;
-   
     t_nodo *ultimo_elemento;
     int cantidad_elementos;
 }t_pila;
