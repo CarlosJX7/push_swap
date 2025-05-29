@@ -40,11 +40,11 @@ void ft_pila_indices(t_pila *pila, int *array_ordenado)
 		{
 			if (nodo->valor == array_ordenado[i])
 			{
-				nodo->index = pila->cantidad_elementos - i;
+				nodo->index = i;
 			}
 			i++;
 		}
-		i = 0; //falto
+		i = 0; //f
 		nodo = nodo->siguiente_nodo;
 	}
 	
