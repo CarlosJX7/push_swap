@@ -45,6 +45,20 @@ static void ft_imprimir_pilas(t_pila *pilaA, t_pila *pilaB)
     }
     printf("-------------------------------\n");
 }
+
+void imprimir_pila(t_pila *pila)
+{
+    t_nodo *node;
+
+    node = pila->primer_elemento;
+
+    while (node != NULL)
+    {
+        printf("Valor >%d<, indice >%d<\n", node->valor, node->index);
+        node = node->siguiente_nodo;
+    }
+    printf("FIN PILA\n");
+}
 void ft_imprimir_array(int *array_enteros, int cantidad)
 {
     int j;
@@ -190,7 +204,9 @@ int main(int argc, char const *argv[])
     ft_pila_indices(pila_A, array_ordenado);
 
     ft_radix(pila_A, pila_B);
-    menu_interactivo_flechas(pila_A, pila_B);
+    //menu_interactivo_flechas(pila_A, pila_B);
+    imprimir_pila(pila_A);
+    imprimir_pila(pila_B);
 
    ft_vaciar_pila(pila_A);
    ft_vaciar_pila(pila_B);
