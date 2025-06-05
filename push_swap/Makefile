@@ -33,4 +33,10 @@ run:
 run2:
 	./push_swap 0 1 2 3 4 5 6 7 8 9
 
+run3:
+	./push_swap 3 8 15 4 9 1 5 0
+
+run4:
+	./push_swap -1 1 -6 6 -4 4
+
 .PHONY: all clean fclean re

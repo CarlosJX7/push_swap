@@ -204,7 +204,7 @@ int main(int argc, char const *argv[])
     ft_pila_indices(pila_A, array_ordenado);
 
     ft_radix(pila_A, pila_B);
-    //menu_interactivo_flechas(pila_A, pila_B);
+    menu_interactivo_flechas(pila_A, pila_B);
     imprimir_pila(pila_A);
     imprimir_pila(pila_B);
 
