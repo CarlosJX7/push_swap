@@ -32,3 +32,7 @@ void ft_do_ss(t_pila *pilaA, t_pila *pilaB)
 	ft_do_sa(pilaA);
 	ft_do_sb(pilaB);
 }
+
+
+
+https://github.com/Seraph919/Grademe-edu.git
