@@ -16,6 +16,9 @@ int *ft_pila_to_array(t_pila *pila)
 	t_nodo *posicion_pila;
 
 	lista = malloc(sizeof(int) * pila->cantidad_elementos);
+	if (!lista)
+		return NULL;
+	
 	i = 0;
 	posicion_pila = pila->primer_elemento;
 	while (i < pila->cantidad_elementos)

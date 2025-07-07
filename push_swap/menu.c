@@ -210,6 +210,7 @@ int main(int argc, char const *argv[])
 
    ft_vaciar_pila(pila_A);
    ft_vaciar_pila(pila_B);
+   free(array_ordenado);
    printf("FIN DEL PROGRAMA\n");
     return 0;
 }

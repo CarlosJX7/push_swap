@@ -1,0 +1,724 @@
+#	ifndef MOVEMENTS_H
+# define MOVEMENTS_H
+
+#include "nodes.h"
+
+void ft_rotate(t_pila *pila);
+void ft_rotate_inverso(t_pila *pila);
+
+void ft_push(t_pila *pila_origen, t_pila *pila_destino);
+void ft_do_pa(t_pila *pilaA, t_pila *pilaB);
+void ft_swap(t_pila *pila);
+//ojo a los casos especiales
+
+
+#endif
+#	ifndef NODES_H
+# define NODES_H
+
+# include <stdlib.h>
+
+typedef struct s_nodo
+{
+    int valor;
+    struct s_nodo *siguiente_nodo;
+    struct s_nodo *anterior_nodo;
+    int index;
+}t_nodo;
+
+typedef struct s_pila
+{
+    t_nodo *primer_elemento;
+    t_nodo *ultimo_elemento;
+    int cantidad_elementos;
+}t_pila;
+
+
+void ft_agregar_nodo(t_pila *pila, int valor_main);
+void ft_eliminar_nodo(t_pila *pila, t_nodo *nodo);
+t_nodo *ft_cortar_nodo_inicio(t_pila *pila);
+void ft_unir_nodo_inicio(t_pila *pila, t_nodo *nodo_nuevo);
+void ft_vaciar_pila(t_pila *pila);
+int *ft_pila_to_array(t_pila *pila);
+
+//ojo a los casos especiales
+
+#endif#	ifndef PS_UTILS_H
+# define PS_UTILS_H
+
+#include "nodes.h"
+
+int		ft_atoi(const char *str);
+void menu_interactivo_flechas(t_pila *pilaA, t_pila *pilaB);
+int *ft_ordenar_array(int *array, int cantidad);
+void ft_pila_indices(t_pila *pila, int *array_ordenado);
+void ft_radix(t_pila *pilaA, t_pila *pilaB);
+
+#endif/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   menu.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cinaquiz <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/26 14:16:46 by cinaquiz          #+#    #+#             */
+/*   Updated: 2025/05/26 14:16:48 by cinaquiz         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ps_utils.h"
+#include "movements.h"
+#include "nodes.h"
+#include <stdio.h>
+#include <termios.h>
+#include <unistd.h>
+
+static void ft_imprimir_pilas(t_pila *pilaA, t_pila *pilaB)
+{
+    t_nodo *a = pilaA->primer_elemento;
+    t_nodo *b = pilaB->primer_elemento;
+
+    printf("\n   Pila A      Pila B\n");
+    printf("  -------     -------\n");
+    while (a || b)
+    {
+        if (a)
+        {
+            printf("   %6d, indice = %d", a->valor, a->index);
+            a = a->siguiente_nodo;
+        }
+        else
+            printf("         ");
+
+        printf("   ");
+
+        if (b)
+        {
+            printf("%6d, indice = %d", b->valor, b->index);
+            b = b->siguiente_nodo;
+        }
+        printf("\n");
+    }
+    printf("-------------------------------\n");
+}
+
+void imprimir_pila(t_pila *pila)
+{
+    t_nodo *node;
+
+    node = pila->primer_elemento;
+    printf("INICIO PILA\n");
+    while (node != NULL)
+    {
+        printf("Valor >%d<, indice >%d<\n", node->valor, node->index);
+        node = node->siguiente_nodo;
+    }
+    printf("FIN PILA\n");
+}
+void ft_imprimir_array(int *array_enteros, int cantidad)
+{
+    int j;
+    j = 0;
+    printf("-------------LISTA-------------\n");
+    //while (array_enteros[j]) no imprime el 0
+    while (j < cantidad)
+    {
+            printf("              [%d]\n", array_enteros[j]);
+            j++;
+        }
+    printf("-------------------------------\n");
+}
+void set_raw_mode(int enable)
+{
+    static struct termios oldt, newt;
+    if (enable)
+    {
+        tcgetattr(STDIN_FILENO, &oldt);
+        newt = oldt;
+        newt.c_lflag &= ~(ICANON | ECHO);
+        tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+    }
+    else
+    {
+        tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+    }
+}
+
+void menu_interactivo_flechas(t_pila *pilaA, t_pila *pilaB)
+{
+    int c;
+    set_raw_mode(1);
+    while (1)
+    {
+        c = getchar();
+        if (c == 'q')
+            break;
+        printf("\033[H\033[J"); // Limpiar pantalla
+
+        if (c == 27)
+        {
+            if (getchar() == 91)
+            {
+                c = getchar();
+                switch (c)
+                {
+                    case 'A':
+                        ft_rotate(pilaA);
+                        ft_imprimir_pilas(pilaA, pilaB);
+                        break;
+                    case 'B':
+                        ft_rotate_inverso(pilaA);
+                        ft_imprimir_pilas(pilaA, pilaB);
+                        break;
+                    case 'C':
+                        ft_push(pilaA, pilaB);
+                        ft_imprimir_pilas(pilaA, pilaB);
+                        break;
+                    case 'D':
+                        ft_push(pilaB, pilaA);
+                        ft_imprimir_pilas(pilaA, pilaB);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        else
+        {
+            switch (c)
+            {
+                case 's':
+                case 'S':
+                    ft_swap(pilaA);
+					ft_imprimir_pilas(pilaA, pilaB);
+                    break;
+                case 'r':
+                case 'R':
+                    printf("reverse\n");
+                    break;
+                // Puedes añadir más teclas aquí
+                default:
+                    break;
+            }
+        }
+    }
+    set_raw_mode(0);
+}
+
+
+void ft_imprimir_arry(int *array_enteros, int cantidad)
+{
+    int j;
+    j = 0;
+    printf("-------------LISTA-------------\n");
+    //while (array_enteros[j]) no imprime el 0
+    while (j < cantidad)
+    {
+            printf("              [%d]\n", array_enteros[j]);
+            j++;
+        }
+    printf("-------------------------------\n");
+}
+
+
+
+void ft_iniciar_pila(t_pila *pila)
+{
+    pila->primer_elemento = NULL;
+    pila->ultimo_elemento = NULL;
+    pila->cantidad_elementos = 0;
+}
+
+int main(int argc, char const *argv[])
+{
+    int i = 1;
+    t_pila *pila_A;
+    t_pila *pila_B;
+
+    pila_A = malloc(sizeof(t_pila));
+    pila_B = malloc(sizeof(t_pila));
+    ft_iniciar_pila(pila_A);
+    ft_iniciar_pila(pila_B);
+
+    if (argc < 2)
+    {
+        return 0;
+    }
+    
+    while (argv[i])
+    {
+        ft_agregar_nodo(pila_A, ft_atoi(argv[i]));
+        i++;
+    }
+    printf("Imprimimos el array sin ordenar\n");
+    int *pila_array = ft_pila_to_array(pila_A);
+    ft_imprimir_arry(pila_array, pila_A->cantidad_elementos);
+
+    printf("Procedemos a ordenar el array\n");
+    int *array_ordenado = ft_ordenar_array(pila_array, pila_A->cantidad_elementos);
+    ft_imprimir_arry(array_ordenado, pila_A->cantidad_elementos);
+    ft_pila_indices(pila_A, array_ordenado);
+
+    ft_radix(pila_A, pila_B);
+    menu_interactivo_flechas(pila_A, pila_B);
+    imprimir_pila(pila_A);
+    imprimir_pila(pila_B);
+
+   ft_vaciar_pila(pila_A);
+   ft_vaciar_pila(pila_B);
+   printf("FIN DEL PROGRAMA\n");
+    return 0;
+}
+#include "nodes.h"
+
+
+void ft_agregar_nodo(t_pila *pila, int valor_main)
+{
+	t_nodo *nodo;
+	nodo = malloc(sizeof(t_nodo)); // memria sizeof t_nodo
+	if (!nodo)
+	{
+		return ;
+	}
+	
+	nodo->anterior_nodo = NULL;
+	nodo->siguiente_nodo = NULL;
+	nodo->index = 0;
+	nodo->valor = valor_main;
+	
+	if (pila->cantidad_elementos == 0)
+	{
+		pila->primer_elemento = nodo;
+		pila->ultimo_elemento = nodo;
+	}
+	else
+	{
+		// falta que el anterior nodo apunte al siguiente
+		pila->ultimo_elemento->siguiente_nodo = nodo;
+		nodo->anterior_nodo = pila->ultimo_elemento;
+		
+	}
+	pila->ultimo_elemento = nodo;
+	pila->cantidad_elementos++;
+}
+
+void ft_eliminar_nodo(t_pila *pila, t_nodo *nodo)
+{
+	if (pila->cantidad_elementos == 1)
+	{
+		pila->primer_elemento = NULL;
+		pila->ultimo_elemento = NULL;
+	}
+	else if (pila->primer_elemento == nodo)
+	{
+		nodo->siguiente_nodo->anterior_nodo = NULL;
+		pila->primer_elemento = nodo->siguiente_nodo;
+	}else if (pila->ultimo_elemento == nodo)
+	{
+		nodo->anterior_nodo->siguiente_nodo = NULL;
+		pila->ultimo_elemento = nodo->anterior_nodo;
+	}else
+	{
+		nodo->anterior_nodo->siguiente_nodo = nodo->siguiente_nodo;
+		nodo->siguiente_nodo->anterior_nodo = nodo->anterior_nodo;
+	}
+	pila->cantidad_elementos--;
+	free(nodo);
+}
+
+t_nodo *ft_cortar_nodo_inicio(t_pila *pila) // restar el contador!!
+{
+	t_nodo *nodo_cortado;
+	t_nodo *segundo_nodo;
+	if (pila->cantidad_elementos == 0)
+		return NULL;
+	nodo_cortado = pila->primer_elemento;
+	segundo_nodo = nodo_cortado->siguiente_nodo;
+	if (pila->cantidad_elementos <= 1)
+	{
+		pila->primer_elemento = NULL;
+		pila->ultimo_elemento = NULL;
+		pila->cantidad_elementos = 0; // no lo dio la ia
+		return nodo_cortado;
+	}
+	
+
+	segundo_nodo->anterior_nodo = NULL;
+	nodo_cortado->siguiente_nodo = NULL;
+	nodo_cortado ->anterior_nodo = NULL;
+	pila->primer_elemento = segundo_nodo;
+	pila->cantidad_elementos--;
+	return nodo_cortado;
+}
+
+void ft_unir_nodo_inicio(t_pila *pila, t_nodo *nodo_nuevo) // nos falta añadir casos
+{
+	t_nodo *nodo_antiguo;
+
+	nodo_antiguo = NULL;
+	if (pila->cantidad_elementos == 0)
+	{
+		
+		nodo_nuevo->siguiente_nodo = NULL;
+		nodo_nuevo->anterior_nodo = NULL;
+		pila->primer_elemento = nodo_nuevo;
+		pila->ultimo_elemento = nodo_nuevo;
+		pila->cantidad_elementos++;
+		return ;
+	}else
+	{
+		nodo_antiguo = pila->primer_elemento;
+		nodo_nuevo->siguiente_nodo = nodo_antiguo;
+		nodo_antiguo->anterior_nodo = nodo_nuevo;
+		pila->primer_elemento = nodo_nuevo;
+		pila->cantidad_elementos++;
+	}
+
+}#include "nodes.h"
+#include "ps_utils.h"
+
+void ft_vaciar_pila(t_pila *pila)
+{
+	while (pila->cantidad_elementos > 0)
+	{
+		ft_eliminar_nodo(pila, pila->primer_elemento);
+	}
+}
+
+int *ft_pila_to_array(t_pila *pila)
+{
+	int *lista;
+	int i;
+	t_nodo *posicion_pila;
+
+	lista = malloc(sizeof(int) * pila->cantidad_elementos);
+	i = 0;
+	posicion_pila = pila->primer_elemento;
+	while (i < pila->cantidad_elementos)
+	{
+		lista[i] = posicion_pila->valor;
+		posicion_pila = posicion_pila->siguiente_nodo;
+		i++;
+	}
+	return lista;
+}
+
+void ft_pila_indices(t_pila *pila, int *array_ordenado)
+{
+	t_nodo *nodo;
+	int i;
+
+	i = 0;
+	nodo = pila->primer_elemento;
+	while (nodo != NULL)
+	{
+		while (i < pila->cantidad_elementos)
+		{
+			if (nodo->valor == array_ordenado[i])
+			{
+				nodo->index = i;
+			}
+			i++;
+		}
+		i = 0; //f
+		nodo = nodo->siguiente_nodo;
+	}
+	
+}#include "ps_utils.h"
+#include <stdlib.h>
+
+int	ft_isspace(char c)
+{
+	if (c == ' ' || c == '\n' || c == '\t'
+		|| c == '\v' || c == '\f' || c == '\r')
+		return (1);
+	else
+		return (0);
+}
+
+int	ft_atoi(const char *str)
+{
+	long	nbr;
+	int	sign;
+	size_t	i;
+
+	nbr = 0;
+	sign = 1;
+	i = 0;
+	while ((str[i] != '\0') && ft_isspace(str[i]) == 1)
+		i++;
+	if (str[i] == '-')
+		sign = -1;
+	if ((str[i] == '-') || (str[i] == '+'))
+		i++;
+	while ((str[i] != '\0') && ('0' <= str[i]) && (str[i] <= '9'))
+	{
+		nbr = (nbr * 10) + (str[i] - '0');
+		if (nbr > 2147483647 && sign == 1)
+			return (-1);
+		if (nbr > 2147483648 && sign == -1)
+			return (0);
+		i++;
+	}
+	return (sign * nbr);
+}
+
+
+int	ft_buscar_en_array(int *array, int n, int size)
+{
+	int	i;
+
+	i = 0;
+	while (i < size)
+	{
+		if (array[i] == n)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	*ft_ordenar_array(int *array, int cantidad)
+{
+	int	*array_ordenado;
+	int	i;
+	int	min;
+	int	min_idx;
+	int	ordenados;
+
+	array_ordenado = (int *)malloc(sizeof(int) * cantidad);
+	if (!array_ordenado)
+		return (NULL);
+	ordenados = 0;
+	while (ordenados < cantidad)
+	{
+		min = 2147483647; // INT_MAX
+		min_idx = -1;
+		i = 0;
+		while (i < cantidad)
+		{
+			if (!ft_buscar_en_array(array_ordenado, array[i], ordenados)
+				&& array[i] < min)
+			{
+				min = array[i];
+				min_idx = i;
+			}
+			i++;
+		}
+		if (min_idx != -1)
+		{
+			array_ordenado[ordenados] = array[min_idx];
+			ordenados++;
+		}
+	}
+	return (array_ordenado);
+}
+
+#include "nodes.h"
+#include "movements.h"
+
+
+void ft_push(t_pila *pila_origen, t_pila *pila_destino)
+{
+	t_nodo *nodo_push;
+
+	nodo_push = ft_cortar_nodo_inicio(pila_origen);
+	if (nodo_push != NULL)
+		ft_unir_nodo_inicio(pila_destino, nodo_push);
+	else
+		return ;
+}
+
+void ft_do_pa(t_pila *pilaA, t_pila *pilaB)
+{
+	ft_push(pilaA, pilaB);
+}
+
+void ft_do_pb(t_pila *pilaA, t_pila *pilaB)
+{
+	ft_push(pilaB, pilaA);
+}#include "nodes.h"
+#include "movements.h"
+#include "ps_utils.h"
+#include <stdio.h>
+int rotaciones(int n)
+{
+	int i;
+
+	i = 0;
+	while (n > 0)
+	{
+		n = n >> 1;
+		i++;
+	}
+	return i;
+	
+}
+void ft_fill_a(t_pila *pilaA, t_pila *pilaB)
+{
+    while (pilaB->cantidad_elementos > 0)
+    {
+        ft_push(pilaB, pilaA);
+    }
+    
+}
+
+void ft_radix(t_pila *pilaA, t_pila *pilaB)
+{
+    t_nodo *node;
+    int comp;
+    int rotacion;
+    int mask;
+
+    
+    comp = 0x01;
+    
+    mask = 0;
+    while (mask < rotaciones(pilaA->cantidad_elementos))
+    {
+        printf("Estamos en la rotacion numero %d\n", mask);
+        rotacion = pilaA->cantidad_elementos;
+        while (rotacion > 0)
+        {
+            printf("Estamos dentro del segundo bucle rotacion = %d: ", rotacion);
+            
+            node = pilaA->primer_elemento;
+            if ((node->index & comp) == 0)
+            {
+                printf("& = %d  || mov: %d -> B\n", node->index & comp, node->index);
+                node = node->siguiente_nodo; //al hacer push puede que no se actualice
+                ft_push(pilaA, pilaB);
+            }else
+            {
+                /* code */
+            ft_rotate(pilaA);
+                //node = node->siguiente_nodo;
+            }
+            
+            //printf("Apuntamos a index: %d\n", node->index);
+            rotacion--;
+        }
+        ft_fill_a(pilaA, pilaB);
+        comp = comp<<1;
+        mask++;
+        /* code */
+    }    
+    
+
+    
+    printf("fin radix\n");
+}
+#include "nodes.h"
+#include "movements.h"
+
+void ft_rotate_inverso(t_pila *pila)
+{
+	t_nodo *nodo_nuevo_ultimo;
+	t_nodo *nodo_antiguo_primero;
+	t_nodo *nodo_mover;
+
+	if (pila->cantidad_elementos <= 1)
+		return ;
+	
+	nodo_nuevo_ultimo = pila->ultimo_elemento->anterior_nodo;
+	nodo_antiguo_primero = pila->primer_elemento;
+	nodo_mover = pila->ultimo_elemento;
+
+	// Separamos los nodos del final
+	nodo_nuevo_ultimo->siguiente_nodo = NULL;
+	nodo_mover->anterior_nodo = NULL;
+
+	nodo_mover->siguiente_nodo = nodo_antiguo_primero;
+	nodo_antiguo_primero->anterior_nodo = nodo_mover;
+
+	pila->primer_elemento = nodo_mover;
+	pila->ultimo_elemento = nodo_nuevo_ultimo;
+}
+
+void ft_do_rra(t_pila *pilaA)
+{
+	ft_rotate_inverso(pilaA);
+}
+void ft_do_rrb(t_pila *pilaB)
+{
+	ft_rotate_inverso(pilaB);
+}
+void ft_do_rrr(t_pila *pilaA, t_pila *pilaB)
+{
+	ft_do_rra(pilaA);
+	ft_do_rrb(pilaB);
+}#include "nodes.h"
+#include "movements.h"
+
+void ft_rotate(t_pila *pila)
+{
+	t_nodo *nodo_nuevo_primero;
+	t_nodo *nodo_antiguo_ultimo;
+	t_nodo *nodo_mover;
+
+	if (pila->cantidad_elementos <= 1)
+		return ;
+	nodo_mover = pila->primer_elemento;
+	nodo_nuevo_primero = pila->primer_elemento->siguiente_nodo;
+	nodo_antiguo_ultimo = pila->ultimo_elemento;
+
+	nodo_nuevo_primero->anterior_nodo = NULL;
+	pila->primer_elemento->siguiente_nodo = NULL;
+
+	nodo_antiguo_ultimo->siguiente_nodo = pila->primer_elemento;
+	pila->primer_elemento->anterior_nodo = nodo_antiguo_ultimo;
+
+	pila->primer_elemento = nodo_nuevo_primero;
+	pila->ultimo_elemento = nodo_mover;
+}
+
+void ft_do_ra(t_pila *pilaA)
+{
+	ft_rotate(pilaA);
+}
+void ft_do_rb(t_pila *pilaB)
+{
+	ft_rotate(pilaB);
+}
+void ft_do_rr(t_pila *pilaA, t_pila *pilaB)
+{
+	ft_do_ra(pilaA);
+	ft_do_rb(pilaB);
+}#include "nodes.h"
+#include "movements.h"
+
+void ft_swap(t_pila *pila) // ojo al orden fifo
+{
+	t_nodo *nodo_primero;
+	t_nodo *nodo_segundo;
+
+	if (pila->cantidad_elementos <= 1)
+	{
+		return ;
+	}
+	
+	nodo_primero = ft_cortar_nodo_inicio(pila);
+	nodo_segundo = ft_cortar_nodo_inicio(pila);
+	ft_unir_nodo_inicio(pila, nodo_primero);
+	ft_unir_nodo_inicio(pila, nodo_segundo);
+}
+
+void ft_do_sa(t_pila *pilaA)
+{
+	ft_swap(pilaA);
+}
+
+void ft_do_sb(t_pila *pilaB)
+{
+	ft_swap(pilaB);
+}
+
+void ft_do_ss(t_pila *pilaA, t_pila *pilaB)
+{
+	ft_do_sa(pilaA);
+	ft_do_sb(pilaB);
+}
+
+
+
+//https://github.com/Seraph919/Grademe-edu.git

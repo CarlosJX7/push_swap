@@ -6,9 +6,7 @@ void ft_agregar_nodo(t_pila *pila, int valor_main)
 	t_nodo *nodo;
 	nodo = malloc(sizeof(t_nodo)); // memria sizeof t_nodo
 	if (!nodo)
-	{
 		return ;
-	}
 	
 	nodo->anterior_nodo = NULL;
 	nodo->siguiente_nodo = NULL;
