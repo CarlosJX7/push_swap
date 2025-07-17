@@ -22,6 +22,9 @@ static void ft_imprimir_pilas(t_pila *pilaA, t_pila *pilaB)
     t_nodo *a = pilaA->primer_elemento;
     t_nodo *b = pilaB->primer_elemento;
 
+    int a;
+    a = 20;
+
     printf("\n   Pila A      Pila B\n");
     printf("  -------     -------\n");
     while (a || b)

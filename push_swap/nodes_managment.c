@@ -1,6 +1,5 @@
 #include "nodes.h"
 
-
 void ft_agregar_nodo(t_pila *pila, int valor_main)
 {
 	t_nodo *nodo;

@@ -87,4 +87,3 @@ int	*ft_ordenar_array(int *array, int cantidad)
 	}
 	return (array_ordenado);
 }
-
