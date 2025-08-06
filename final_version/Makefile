@@ -9,7 +9,8 @@ SRC = \
     mov_swap.c \
     node_managment.c \
     stack_managment.c \
-    utils.c
+    utils.c \
+    radix.c
 
 OBJ = $(SRC:.c=.o)
 

@@ -9,10 +9,10 @@ int	ft_isspace(char c)
 		return (0);
 }
 
-int ft_atoi(char *str)
+int	ft_atoi(char *str)
 {
 	long	nbr;
-	int	sign;
+	int		sign;
 	size_t	i;
 
 	nbr = 0;
@@ -36,25 +36,6 @@ int ft_atoi(char *str)
 	return (sign * nbr);
 }
 
-int *ft_pila_to_array(t_stack *pila)
-{
-		int *array;
-		int i;
-		t_node *posicion;
-
-		array = malloc(pila->cantidad_elementos * sizeof(int));
-		if (!array)
-			return NULL;
-		posicion = pila->primer_elemento;
-		i = 0;
-		while (i < pila->cantidad_elementos)
-		{
-			array[i] = posicion->valor;
-			posicion = posicion->siguiente_nodo;
-			i++;
-		}
-		return array;
-}
 int *ft_ordenar_array(int *array, int n)
 {
 	int	i;
@@ -79,7 +60,7 @@ int *ft_ordenar_array(int *array, int n)
 	}
 	return array;
 }
-
+/*
 void ft_indices_pila(t_stack *pila, int *array)
 {
 	t_node *nodo;
@@ -89,8 +70,39 @@ void ft_indices_pila(t_stack *pila, int *array)
 	nodo = pila->primer_elemento;
 	while (nodo)
 	{
-		nodo->valor = array[i];
+		nodo->index = array[i];
 		nodo = nodo->siguiente_nodo;
 		i++;
 	}
+}*/
+
+int	ft_index(int n, int *array, int max)
+{
+	int i;
+
+	i = 0;
+	while (i < max)
+	{
+		if (array[i] == n)
+		{
+			return i;
+		}
+		i++;
+	}
+	return 0;
+}
+
+void	ft_index_ordenado(t_stack *pila, int *array)
+{
+	t_node *nodo;
+	int index;
+
+	nodo = pila->primer_elemento;
+	while (nodo)
+	{
+		index = ft_index(nodo->valor, array, pila->cantidad_elementos);
+		nodo->index = index;
+		nodo = nodo->siguiente_nodo;
+	}
+	
 }

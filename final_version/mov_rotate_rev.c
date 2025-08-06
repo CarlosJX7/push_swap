@@ -1,33 +1,35 @@
 #include "node.h"
 #include "movements.h"
 
-static void	ft_rotate_rev(t_stack *pila)
+static void	ft_rotate_rev(t_stack *pila) //cortar nodo del final
 {
-	t_node *nodo;
-	t_node *nuevo_final;
+	t_node	*nodo;
 
+	if (pila->cantidad_elementos <= 1)
+		return ;
 	nodo = pila->ultimo_elemento;
+	nodo->anterior_nodo->siguiente_nodo = NULL;
+	pila->ultimo_elemento = nodo->anterior_nodo;
+	nodo->siguiente_nodo = NULL;
 	nodo->anterior_nodo = NULL;
-	nuevo_final = nodo->anterior_nodo;
-	nuevo_final->siguiente_nodo = NULL;
-	pila->ultimo_elemento = nuevo_final;
 	ft_nodo_a_pila(nodo, pila);
 }
 
 void	ft_rotate_rev_a(t_stack *pila)
 {
 	ft_rotate_rev(pila);
-	write(1, "rra", 3);
+	write(1, "rra\n", 4);
 }
+
 void	ft_rotate_rev_b(t_stack *pila)
 {
 	ft_rotate_rev(pila);
-	write(1, "rrb", 3);
+	write(1, "rrb\n", 4);
 }
 
 void	ft_rotate_rev_r(t_stack *pilaA, t_stack *pilaB)
 {
 	ft_rotate_rev(pilaA);
 	ft_rotate_rev(pilaB);
-	write(1, "rrr", 3);
+	write(1, "rrr\n", 4);
 }

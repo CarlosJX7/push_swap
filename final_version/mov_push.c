@@ -1,23 +1,27 @@
 #include "node.h"
 #include "movements.h"
-// pasar siempre pila A y B
-static void ft_push(t_stack *pilaA, t_stack *pilaB)
+
+static int	ft_push(t_stack *pilaDonante, t_stack *pilaRecibe)
 {
-	t_node *nodo;
-	nodo = ft_cortar_nodo(pilaA);
+	t_node	*nodo;
+
+	if (pilaDonante->cantidad_elementos == 0)
+		return (0);
+	nodo = ft_cortar_nodo(pilaDonante);
 	if (!nodo)
-		return ;
-	ft_nodo_a_pila(nodo, pilaB);
+		return (0);
+	ft_nodo_a_pila(nodo, pilaRecibe);
+	return (1);
 }
 
-void ft_push_a(t_stack *pilaA, t_stack *pilaB)
+void	ft_push_a(t_stack *pilaA, t_stack *pilaB)
 {
-	ft_push(pilaA, pilaB);
-	write(1, "pa", 2);
+	if (ft_push(pilaB, pilaA))
+		write(1, "pa\n", 3);
 }
 
-void ft_push_b(t_stack *pilaA, t_stack *pilaB)
+void	ft_push_b(t_stack *pilaA, t_stack *pilaB)
 {
-	ft_push(pilaA, pilaB);
-	write(1, "pb", 2);
+	if (ft_push(pilaA, pilaB))
+		write(1, "pb\n", 3);
 }

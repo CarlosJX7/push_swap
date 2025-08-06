@@ -5,5 +5,6 @@
 void	ft_pila_free(t_stack *pila);
 t_stack *ft_pila_ini();
 int *ft_stack_to_array(t_stack *pila);
+int *ft_pila_to_array(t_stack *pila);
 
 #endif

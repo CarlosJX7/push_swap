@@ -1,47 +1,46 @@
 #include "stack.h"
 #include "node.h"
 
-t_stack *ft_pila_ini()
+t_stack	*ft_pila_ini(void)
 {
-	t_stack *pila;
+	t_stack	*pila;
 
 	pila = malloc(sizeof(t_stack));
 	if (!pila)
-		return NULL;
+		return (NULL);
 	pila->cantidad_elementos = 0;
 	pila->primer_elemento = NULL;
 	pila->ultimo_elemento = NULL;
-	return pila;
+	return (pila);
 }
 
-int *ft_stack_to_array(t_stack *pila)
+int	*ft_stack_to_array(t_stack *pila)
 {
-	int i;
-	int *array;
-	t_node *nodo;
+	int		i;
+	int		*array;
+	t_node	*nodo;
 
 	nodo = pila->primer_elemento;
 	array = malloc(pila->cantidad_elementos * sizeof(int));
 	if (!array)
-		return NULL;
-	
+		return (NULL);
 	i = 0;
 	while (i < pila->cantidad_elementos && nodo)
 	{
 		array[i] = nodo->valor;
-		nodo =  nodo->siguiente_nodo;
-		i++;	
+		nodo = nodo->siguiente_nodo;
+		i++;
 	}
-	return array;
+	return (array);
 }
 
 void	ft_pila_free(t_stack *pila)
 {
 	t_node	*nodo;
 	t_node	*siguiente;
+
 	if (pila->cantidad_elementos == 0)
 		return ;
-	
 	nodo = pila->primer_elemento;
 	while (nodo)
 	{
@@ -52,4 +51,24 @@ void	ft_pila_free(t_stack *pila)
 	pila->primer_elemento = NULL;
 	pila->ultimo_elemento = NULL;
 	pila->cantidad_elementos = 0;
+}
+
+int	*ft_pila_to_array(t_stack *pila)
+{
+	int		*array;
+	int		i;
+	t_node	*posicion;
+
+	array = malloc(pila->cantidad_elementos * sizeof(int));
+	if (!array)
+		return (NULL);
+	posicion = pila->primer_elemento;
+	i = 0;
+	while (i < pila->cantidad_elementos)
+	{
+		array[i] = posicion->valor;
+		posicion = posicion->siguiente_nodo;
+		i++;
+	}
+	return (array);
 }
