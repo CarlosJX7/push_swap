@@ -60,21 +60,6 @@ int *ft_ordenar_array(int *array, int n)
 	}
 	return array;
 }
-/*
-void ft_indices_pila(t_stack *pila, int *array)
-{
-	t_node *nodo;
-	int i;
-
-	i = 0;
-	nodo = pila->primer_elemento;
-	while (nodo)
-	{
-		nodo->index = array[i];
-		nodo = nodo->siguiente_nodo;
-		i++;
-	}
-}*/
 
 int	ft_index(int n, int *array, int max)
 {

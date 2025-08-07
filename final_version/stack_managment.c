@@ -1,6 +1,6 @@
 #include "stack.h"
 #include "node.h"
-
+#include <stdio.h>
 t_stack	*ft_pila_ini(void)
 {
 	t_stack	*pila;
@@ -40,17 +40,21 @@ void	ft_pila_free(t_stack *pila)
 	t_node	*siguiente;
 
 	if (pila->cantidad_elementos == 0)
+	{
+		free(pila);
 		return ;
+	}
 	nodo = pila->primer_elemento;
-	while (nodo)
+	while (pila->cantidad_elementos)
 	{
 		siguiente = nodo->siguiente_nodo;
 		free(nodo);
+		pila->cantidad_elementos--;
 		nodo = siguiente;
 	}
 	pila->primer_elemento = NULL;
 	pila->ultimo_elemento = NULL;
-	pila->cantidad_elementos = 0;
+	free(pila);
 }
 
 int	*ft_pila_to_array(t_stack *pila)

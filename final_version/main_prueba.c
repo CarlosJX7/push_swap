@@ -24,7 +24,6 @@ int *ft_get_array(int n, char *argv[])
 
 void	ft_fill_stack(t_stack *pila, int *array, int n)
 {
-	//int i;
 	t_node *nodo;
 
 	n = n - 1;
@@ -34,21 +33,42 @@ void	ft_fill_stack(t_stack *pila, int *array, int n)
 		ft_nodo_a_pila(nodo, pila);
 		n--;
 	}
+	free(array);
 }
 
+void ft_error_check(char **argv)
+{
+	int	i;
+	int j;
 
-
+	j = 0;
+	i = 1;
+	while (argv[i])
+	{
+		j = 0;
+		while (argv[i][j])
+		{
+			if (argv[i][j] < '0' || argv[i][j] > '9')
+			{
+				write(2, "Error\n", 6);
+				exit(1);
+			}	
+			j++;
+		}
+		i++;
+	}
+}
 int main(int argc, char *argv[])
 {
 	t_stack *pilaA;
 	t_stack *pilaB;
 
+	ft_error_check(argv);
 	pilaA = ft_pila_ini();
 	pilaB = ft_pila_ini();
 	if (!pilaA || !pilaB)
 		return 1;
 	ft_fill_stack(pilaA, ft_get_array(argc - 1, argv), argc - 1);
-
 	ft_imprimir_pila(pilaA);
 	int *array = ft_pila_to_array(pilaA);
 	ft_imprimir_array(array, pilaA->cantidad_elementos);
