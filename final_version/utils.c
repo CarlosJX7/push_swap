@@ -1,4 +1,5 @@
 #include "node.h"
+#include "push_swap.h"
 
 int	ft_isspace(char c)
 {
@@ -24,23 +25,26 @@ int	ft_atoi(char *str)
 		sign = -1;
 	if ((str[i] == '-') || (str[i] == '+'))
 		i++;
-	while ((str[i] != '\0') && ('0' <= str[i]) && (str[i] <= '9'))
+	if (str[i] == '\0' || (str[i] < '0' || str[i] > '9'))
+		ft_print_error();
+	while ((str[i] != '\0'))
 	{
+		if (str[i] < '0' || str[i] > '9')
+			ft_print_error();
 		nbr = (nbr * 10) + (str[i] - '0');
-		if (nbr > 2147483647 && sign == 1)
-			return (-1);
-		if (nbr > 2147483648 && sign == -1)
-			return (0);
+		if ((nbr > 2147483647 && sign == 1) || (nbr > 2147483648 && sign == -1))
+			ft_print_error();
 		i++;
 	}
 	return (sign * nbr);
 }
 
-int *ft_ordenar_array(int *array, int n)
+int	*ft_ordenar_array(int *array, int n)
 {
 	int	i;
 	int	j;
-	int aux;
+	int	aux;
+
 	i = 0;
 	j = n;
 	while (j > 0)
@@ -58,29 +62,29 @@ int *ft_ordenar_array(int *array, int n)
 		i = 0;
 		j--;
 	}
-	return array;
+	return (array);
 }
 
 int	ft_index(int n, int *array, int max)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < max)
 	{
 		if (array[i] == n)
 		{
-			return i;
+			return (i);
 		}
 		i++;
 	}
-	return 0;
+	return (0);
 }
 
 void	ft_index_ordenado(t_stack *pila, int *array)
 {
-	t_node *nodo;
-	int index;
+	t_node	*nodo;
+	int		index;
 
 	nodo = pila->primer_elemento;
 	while (nodo)
@@ -89,5 +93,4 @@ void	ft_index_ordenado(t_stack *pila, int *array)
 		nodo->index = index;
 		nodo = nodo->siguiente_nodo;
 	}
-	
 }

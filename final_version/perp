@@ -1,1 +1,2 @@
  cat *.h *.c > todo_el_codigo.txt
+ ~/.local/bin/norminette 

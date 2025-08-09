@@ -17,6 +17,7 @@ int *ft_get_array(int n, char *argv[])
 	while (i < n)
 	{
 		array[i] = ft_atoi(argv[i + 1]);
+		
 		i++;
 	}
 	return array;
@@ -36,49 +37,27 @@ void	ft_fill_stack(t_stack *pila, int *array, int n)
 	free(array);
 }
 
-void ft_error_check(char **argv)
-{
-	int	i;
-	int j;
-
-	j = 0;
-	i = 1;
-	while (argv[i])
-	{
-		j = 0;
-		while (argv[i][j])
-		{
-			if (argv[i][j] < '0' || argv[i][j] > '9')
-			{
-				write(2, "Error\n", 6);
-				exit(1);
-			}	
-			j++;
-		}
-		i++;
-	}
-}
 int main(int argc, char *argv[])
 {
 	t_stack *pilaA;
 	t_stack *pilaB;
 
-	ft_error_check(argv);
+	ft_error_check(argv, argc);
 	pilaA = ft_pila_ini();
 	pilaB = ft_pila_ini();
 	if (!pilaA || !pilaB)
 		return 1;
 	ft_fill_stack(pilaA, ft_get_array(argc - 1, argv), argc - 1);
-	ft_imprimir_pila(pilaA);
+	//ft_imprimir_pila(pilaA);
 	int *array = ft_pila_to_array(pilaA);
-	ft_imprimir_array(array, pilaA->cantidad_elementos);
+	//ft_imprimir_array(array, pilaA->cantidad_elementos);
 	array = ft_ordenar_array(array, pilaA->cantidad_elementos);
-	ft_imprimir_array(array, pilaA->cantidad_elementos);
+	//ft_imprimir_array(array, pilaA->cantidad_elementos);
 	ft_index_ordenado(pilaA, array);
-	ft_imprimir_pila(pilaA);
-	printf("\n\n ----------Aplicamos el radix-------------\n\n");
+	//ft_imprimir_pila(pilaA);
+	//printf("\n\n ----------Aplicamos el radix-------------\n\n");
 	ft_radix(pilaA, pilaB);
-	ft_imprimir_pila(pilaA);
+	//ft_imprimir_pila(pilaA);
 	free(array);
 	ft_pila_free(pilaA);
 	ft_pila_free(pilaB);
