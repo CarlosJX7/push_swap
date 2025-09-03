@@ -1,8 +1,8 @@
 #include "nodes.h"
 
-void ft_agregar_nodo(t_pila *pila, int valor_main)
+void	ft_agregar_nodo(t_pila *pila, int valor_main)
 {
-	t_nodo *nodo;
+	t_nodo	*nodo;
 	nodo = malloc(sizeof(t_nodo)); // memria sizeof t_nodo
 	if (!nodo)
 		return ;
@@ -67,8 +67,6 @@ t_nodo *ft_cortar_nodo_inicio(t_pila *pila) // restar el contador!!
 		pila->cantidad_elementos = 0; // no lo dio la ia
 		return nodo_cortado;
 	}
-	
-
 	segundo_nodo->anterior_nodo = NULL;
 	nodo_cortado->siguiente_nodo = NULL;
 	nodo_cortado ->anterior_nodo = NULL;
@@ -77,14 +75,13 @@ t_nodo *ft_cortar_nodo_inicio(t_pila *pila) // restar el contador!!
 	return nodo_cortado;
 }
 
-void ft_unir_nodo_inicio(t_pila *pila, t_nodo *nodo_nuevo) // nos falta añadir casos
+void	ft_unir_nodo_inicio(t_pila *pila, t_nodo *nodo_nuevo) // nos falta añadir casos
 {
-	t_nodo *nodo_antiguo;
+	t_nodo	*nodo_antiguo;
 
 	nodo_antiguo = NULL;
 	if (pila->cantidad_elementos == 0)
 	{
-		
 		nodo_nuevo->siguiente_nodo = NULL;
 		nodo_nuevo->anterior_nodo = NULL;
 		pila->primer_elemento = nodo_nuevo;
@@ -99,5 +96,4 @@ void ft_unir_nodo_inicio(t_pila *pila, t_nodo *nodo_nuevo) // nos falta añadir 
 		pila->primer_elemento = nodo_nuevo;
 		pila->cantidad_elementos++;
 	}
-
 }

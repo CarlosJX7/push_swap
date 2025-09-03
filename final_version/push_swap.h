@@ -10,5 +10,6 @@
 # include "stack.h"
 # include "utils.h"
 # include "main_utils.h"
+# include "algoritmos.h"
 
 #endif

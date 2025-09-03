@@ -1,6 +1,7 @@
 #include "stack.h"
 #include "node.h"
-#include <stdio.h>
+#include "push_swap.h"
+
 t_stack	*ft_pila_ini(void)
 {
 	t_stack	*pila;
@@ -57,6 +58,20 @@ void	ft_pila_free(t_stack *pila)
 	free(pila);
 }
 
+int ft_array_ordenado_check(int *array, int n)
+{
+	int	i;
+
+	i = 0;
+	while (i < n - 1)
+	{
+		if (array[i] > array[i + 1])
+			return 1;
+		i++;
+	}
+	return 0;
+}
+
 int	*ft_pila_to_array(t_stack *pila)
 {
 	int		*array;
@@ -74,5 +89,8 @@ int	*ft_pila_to_array(t_stack *pila)
 		posicion = posicion->siguiente_nodo;
 		i++;
 	}
-	return (array);
+	if (ft_array_ordenado_check(array, pila->cantidad_elementos))
+		return (array);
+	else
+		return NULL;
 }

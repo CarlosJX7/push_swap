@@ -31,3 +31,30 @@ void ft_error_check(char **argv, int argc)
 		i++;
 	}
 }
+
+int	ft_algoritmos(int n, t_stack *pilaA, t_stack *pilaB)
+{
+	if (n == 3)
+	{
+		write(1, "sa\n", 3);
+		return (1);
+	}
+	if (n == 4)
+	{
+		ft_tres_elementos(pilaA, pilaB);
+		return (1);
+	}
+	if (n == 5)
+	{
+		ft_cuatro_elementos(pilaA, pilaB);
+		return (1);
+	}
+
+	if (n == 6)
+	{
+		ft_cinco_elementos(pilaA, pilaB);
+		return(1);
+	}
+	
+	return 0;
+}

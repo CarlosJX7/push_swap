@@ -10,7 +10,8 @@ SRC = \
     node_managment.c \
     stack_managment.c \
     utils.c \
-    radix.c
+    radix.c \
+    algoritmos.c
 
 OBJ = $(SRC:.c=.o)
 

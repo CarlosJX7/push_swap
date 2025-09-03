@@ -46,17 +46,27 @@ int main(int argc, char *argv[])
 	pilaA = ft_pila_ini();
 	pilaB = ft_pila_ini();
 	if (!pilaA || !pilaB)
-		return 1;
+	return 1;
 	ft_fill_stack(pilaA, ft_get_array(argc - 1, argv), argc - 1);
 	//ft_imprimir_pila(pilaA);
 	int *array = ft_pila_to_array(pilaA);
+	if (!array)
+	return 0;
+
+	
 	//ft_imprimir_array(array, pilaA->cantidad_elementos);
 	array = ft_ordenar_array(array, pilaA->cantidad_elementos);
 	//ft_imprimir_array(array, pilaA->cantidad_elementos);
 	ft_index_ordenado(pilaA, array);
+
+	if (!ft_algoritmos(argc, pilaA, pilaB))
+	{
+		ft_radix(pilaA, pilaB);
+	}
+	
 	//ft_imprimir_pila(pilaA);
 	//printf("\n\n ----------Aplicamos el radix-------------\n\n");
-	ft_radix(pilaA, pilaB);
+	//ft_radix(pilaA, pilaB);
 	//ft_imprimir_pila(pilaA);
 	free(array);
 	ft_pila_free(pilaA);
