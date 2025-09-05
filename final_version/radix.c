@@ -35,7 +35,7 @@ void	ft_algoritmo(t_stack *pilaA, t_stack *pilaB, int bit)
 		nodo = pilaA->primer_elemento;
 		if ((nodo->index & bit) == 0)
 		{
-			nodo = nodo->siguiente_nodo;
+			//nodo = nodo->siguiente_nodo;
 			ft_push_b(pilaA, pilaB);
 		}
 		else

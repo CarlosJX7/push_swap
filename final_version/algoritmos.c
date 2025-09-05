@@ -45,8 +45,10 @@ void	ft_tres_elementos(t_stack *pilaA, t_stack *pilaB)
 	//printf("primero %d, segundo %d\n\n", primero, segundo);
 	if (primero == 0 && segundo != 1)
 	{
+		//ft_do_sa(pilaA);
+		//ft_rotate_a(pilaA); 
+		ft_rotate_rev_a(pilaA);
 		ft_do_sa(pilaA);
-		ft_rotate_a(pilaA);
 	}
 	else if (primero == 0)
 	{

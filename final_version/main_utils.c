@@ -1,29 +1,28 @@
 #include "push_swap.h"
 
-void ft_print_error(void)
+void	ft_print_error(void)
 {
-			write(2, "Error\n", 6);
-			exit(1);
+	write(2, "Error\n", 6);
+	exit(1);
 }
 
-int	ft_strlen(char *str)
+int	ft_strlen(const char *str)
 {
 	int	i;
-	
+
 	i = 0;
 	while (str[i])
-	{
 		i++;
-	}
 	return (i);
 }
-void ft_error_check(char **argv, int argc)
+
+void	ft_error_check(char **argv, int argc)
 {
 	int	i;
+
 	i = 1;
 	if (argc <= 1)
 		ft_print_error();
-	
 	while (argv[i])
 	{
 		if (!ft_strlen(argv[i]))
@@ -49,12 +48,10 @@ int	ft_algoritmos(int n, t_stack *pilaA, t_stack *pilaB)
 		ft_cuatro_elementos(pilaA, pilaB);
 		return (1);
 	}
-
 	if (n == 6)
 	{
 		ft_cinco_elementos(pilaA, pilaB);
-		return(1);
+		return (1);
 	}
-	
-	return 0;
+	return (0);
 }
