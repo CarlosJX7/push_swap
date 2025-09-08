@@ -1,8 +1,24 @@
-#include "utils.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cinaquiz <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/08 21:11:56 by cinaquiz          #+#    #+#             */
+/*   Updated: 2025/09/08 21:11:58 by cinaquiz         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minilibft.h"
 #include "main_utils.h"
 #include "utils.h"
 #include "../node_stack/node_stack.h"
+#include "../parsing/parsing.h"
+#include "../parsing/get_string.h"
+#include "../node_stack/stack_management.h"
+#include "../algoritmos/algoritmos.h"
+#include "../algoritmos/radix.h"
 
 int	*ft_contruir_array(char **tokens, int *array)
 {

@@ -1,10 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minilibft.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cinaquiz <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/08 21:11:48 by cinaquiz          #+#    #+#             */
+/*   Updated: 2025/09/08 21:11:50 by cinaquiz         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINILIBFT_H
 # define MINILIBFT_H
 
+#include <stddef.h>
+#include <stdlib.h>
+#include "../parsing/parsing.h"
+#include "../parsing/get_string.h"
 int	ft_strlen(const char *str);
-static char	**ft_malloc_error(char **tab);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
-static void	ft_zerovalues(unsigned int *a, unsigned int *b);
 char	**ft_split(char const *s, char c);
 
 #endif

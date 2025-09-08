@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algoritmos.h                                       :+:      :+:    :+:   */
+/*   node_managment.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cinaquiz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/08 21:10:53 by cinaquiz          #+#    #+#             */
-/*   Updated: 2025/09/08 21:10:56 by cinaquiz         ###   ########.fr       */
+/*   Created: 2025/09/08 21:13:28 by cinaquiz          #+#    #+#             */
+/*   Updated: 2025/09/08 21:13:30 by cinaquiz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ALGORITMOS_H
-# define ALGORITMOS_H
+#ifndef NODE_MANAGEMENT_H
+# define NODE_MANAGEMENT_H
 
+#include "node_stack.h"
 
-#include "../node_stack/node_stack.h"
-#include "../movs/movements.h"
-void	ft_tres_elementos(t_stack *pilaA, t_stack *pilaB);
-void	ft_cuatro_elementos(t_stack *pilaA, t_stack *pilaB);
-void	ft_cinco_elementos(t_stack *pilaA, t_stack *pilaB);
+t_node	*ft_crear_nodo(int valor);
+void	ft_nodo_a_pila(t_node *new_nodo, t_stack *pila);
+t_node	*ft_cortar_nodo(t_stack *pila);
+
 #endif

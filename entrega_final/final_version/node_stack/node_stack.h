@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   node_stack.h                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cinaquiz <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/08 21:13:33 by cinaquiz          #+#    #+#             */
+/*   Updated: 2025/09/08 21:13:34 by cinaquiz         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef NODE_H
 # define NODE_H
 # include <stdlib.h>
@@ -17,9 +29,5 @@ typedef struct s_stack
 	t_node	*ultimo_elemento;
 	int		cantidad_elementos;
 }	t_stack;
-
-t_node	*ft_crear_nodo(int valor);
-void	ft_nodo_a_pila(t_node *new_nodo, t_stack *pila);
-t_node	*ft_cortar_nodo(t_stack *pila);
 
 #endif

@@ -1,20 +1,20 @@
 NAME = push_swap
 
 SRC = \
-    push_swap.c \
-    main_utils.c \
-    mov_push.c \
-    mov_rotate.c \
-    mov_rotate_rev.c \
-    mov_swap.c \
-    node_managment.c \
-    stack_managment.c \
-    utils.c \
-    radix.c \
-    algoritmos.c \
-    parsing.c \
-    minilibft.c \
-    get_string.c \
+    algoritmos/algoritmos.c \
+    algoritmos/radix.c \
+    main/main_utils.c \
+    main/minilibft.c \
+    main/push_swap.c \
+    main/utils.c \
+    movs/mov_push.c \
+    movs/mov_rotate.c \
+    movs/mov_rotate_rev.c \
+    movs/mov_swap.c \
+    node_stack/node_management.c \
+    node_stack/stack_management.c \
+    parsing/parsing.c \
+    parsing/get_string.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -36,9 +36,5 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
-# Opcional: para compilar un main_prueba separado.
-prueba: main_prueba.c $(filter-out main.c, $(SRC))
-	$(CC) $(CFLAGS) $^ -o prueba
 
 .PHONY: all clean fclean re prueba

@@ -1,7 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   movements.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cinaquiz <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/08 21:12:28 by cinaquiz          #+#    #+#             */
+/*   Updated: 2025/09/08 21:12:30 by cinaquiz         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MOVEMENTS_H
 # define MOVEMENTS_H
-# include "node.h"
 
+#include "../node_stack/node_stack.h"
+#include "../node_stack/stack_management.h"
+#include "../node_stack/node_managment.h"
 void	ft_push_a(t_stack *pilaA, t_stack *pilaB);
 void	ft_push_b(t_stack *pilaA, t_stack *pilaB);
 void	ft_rotate_rev_a(t_stack *pila);

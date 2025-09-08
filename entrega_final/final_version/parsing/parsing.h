@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algoritmos.h                                       :+:      :+:    :+:   */
+/*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cinaquiz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/08 21:10:53 by cinaquiz          #+#    #+#             */
-/*   Updated: 2025/09/08 21:10:56 by cinaquiz         ###   ########.fr       */
+/*   Created: 2025/09/08 21:14:26 by cinaquiz          #+#    #+#             */
+/*   Updated: 2025/09/08 21:14:28 by cinaquiz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ALGORITMOS_H
-# define ALGORITMOS_H
+#ifndef PARSING_H
+# define PARSING_H
 
-
+#include <stdlib.h>
+#include "../main/utils.h"
+#include "../node_stack/node_managment.h"
 #include "../node_stack/node_stack.h"
-#include "../movs/movements.h"
-void	ft_tres_elementos(t_stack *pilaA, t_stack *pilaB);
-void	ft_cuatro_elementos(t_stack *pilaA, t_stack *pilaB);
-void	ft_cinco_elementos(t_stack *pilaA, t_stack *pilaB);
+
+int ft_is_duplicate(int *array,int size, int n);
+int	*ft_get_array(int n, char *argv[]);
+void	ft_fill_stack(t_stack *pila, int *array, int n);
+int	ft_count_tokens(char **tokens);
+void ft_free_tokens(char **tokens);
+
 #endif

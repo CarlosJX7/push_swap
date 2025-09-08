@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "node_stack.h": "c",
+        "node_managment.h": "c",
+        "stack_management.h": "c",
+        "parsing.h": "c",
+        "get_string.h": "c"
+    }
+}
