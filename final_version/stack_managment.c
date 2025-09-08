@@ -58,7 +58,7 @@ void	ft_pila_free(t_stack *pila)
 	free(pila);
 }
 
-int ft_array_ordenado_check(int *array, int n)
+int	ft_array_ordenado_check(int *array, int n)
 {
 	int	i;
 
@@ -66,10 +66,10 @@ int ft_array_ordenado_check(int *array, int n)
 	while (i < n - 1)
 	{
 		if (array[i] > array[i + 1])
-			return 1;
+			return (1);
 		i++;
 	}
-	return 0;
+	return (0);
 }
 
 int	*ft_pila_to_array(t_stack *pila)
@@ -92,5 +92,5 @@ int	*ft_pila_to_array(t_stack *pila)
 	if (ft_array_ordenado_check(array, pila->cantidad_elementos))
 		return (array);
 	else
-		return NULL;
+		return (NULL);
 }

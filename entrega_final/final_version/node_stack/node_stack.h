@@ -21,4 +21,5 @@ typedef struct s_stack
 t_node	*ft_crear_nodo(int valor);
 void	ft_nodo_a_pila(t_node *new_nodo, t_stack *pila);
 t_node	*ft_cortar_nodo(t_stack *pila);
+
 #endif

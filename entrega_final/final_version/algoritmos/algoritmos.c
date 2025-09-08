@@ -1,5 +1,5 @@
-#include "push_swap.h"
-// cambiar *pilaB por n_elementos y enviarlo desde la funcion anterior
+
+
 void	ft_tres_elementos(t_stack *pilaA, t_stack *pilaB)
 {
 	int	primero;
