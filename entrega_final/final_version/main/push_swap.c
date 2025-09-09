@@ -17,12 +17,13 @@
 #include "../parsing/parsing.h"
 #include "../parsing/get_string.h"
 #include "../node_stack/stack_management.h"
+#include "../node_stack/node_managment.h"
 #include "../algoritmos/algoritmos.h"
 #include "../algoritmos/radix.h"
 
 int	*ft_contruir_array(char **tokens, int *array)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (tokens[i])
@@ -38,13 +39,12 @@ int	*ft_contruir_array(char **tokens, int *array)
 	}
 	ft_free_tokens(tokens);
 	return (array);
-
 }
 
 static int	*ft_parse_single_arg(char *arg, int *size)
 {
-	char **tokens;
-	int *array;
+	char	**tokens;
+	int		*array;
 
 	if (!arg)
 		ft_print_error();
@@ -58,16 +58,13 @@ static int	*ft_parse_single_arg(char *arg, int *size)
 		ft_free_tokens(tokens);
 		ft_print_error();
 	}
-
-	return ft_contruir_array(tokens, array);
-	//detener aqui
-
+	return (ft_contruir_array(tokens, array));
 }
 
 static int	*ft_parse_args(int argc, char **argv, int *size)
 {
-	int *array;
-	int i;
+	int	*array;
+	int	i;
 
 	*size = argc - 1;
 	array = malloc(*size * sizeof(int));
@@ -87,14 +84,14 @@ static int	*ft_parse_args(int argc, char **argv, int *size)
 	return (array);
 }
 
-static void	ft_process(int *array, int size, char **env)
+static void	ft_process(int *array, int size)
 {
-	t_stack *pila_a = ft_pila_ini();
-	t_stack *pila_b = ft_pila_ini();
-	int *aux;
-	(void)env;
+	t_stack	*pila_a;
+	t_stack	*pila_b;
+	int		*aux;
 
-
+	pila_a = ft_pila_ini();
+	pila_b = ft_pila_ini();
 	if (!pila_a || !pila_b)
 	{
 		free(array);
@@ -104,8 +101,7 @@ static void	ft_process(int *array, int size, char **env)
 	free(array);
 	if (ft_pila_to_array(pila_a) == NULL)
 	{
-		ft_pila_free(pila_a);
-		ft_pila_free(pila_b);
+		ft_pilas_free(pila_a, pila_b);
 		return ;
 	}
 	aux = ft_pila_to_array(pila_a);
@@ -114,16 +110,16 @@ static void	ft_process(int *array, int size, char **env)
 	free(aux);
 	if (!ft_algoritmos(size + 1, pila_a, pila_b))
 		ft_radix(pila_a, pila_b);
-	ft_pila_free(pila_a);
-	ft_pila_free(pila_b);
+	ft_pilas_free(pila_a, pila_b);
 }
 
-int	main(int argc, char **argv, char **env)
+int	main(int argc, char **argv)
 {
-	int *array;
-	int size;
-	int k = 0;
+	int	*array;
+	int	size;
+	int	k;
 
+	k = 0;
 	if (argc < 2)
 		return (0);
 	if (argc == 2)
@@ -131,11 +127,11 @@ int	main(int argc, char **argv, char **env)
 		while (argv[1][k] && ft_isspace(argv[1][k]))
 			k++;
 		if (argv[1][k] == '\0')
-    		ft_print_error();
+			ft_print_error();
 		array = ft_parse_single_arg(argv[1], &size);
 	}
 	else
 		array = ft_parse_args(argc, argv, &size);
-	ft_process(array, size, env);
+	ft_process(array, size);
 	return (0);
 }

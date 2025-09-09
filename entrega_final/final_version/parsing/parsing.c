@@ -12,9 +12,7 @@
 
 #include "parsing.h"
 
-
-
-int ft_is_duplicate(int *array,int size, int n)
+int	ft_is_duplicate(int *array, int size, int n)
 {
 	int	i;
 
@@ -23,7 +21,7 @@ int ft_is_duplicate(int *array,int size, int n)
 	{
 		if (n == array[i])
 		{
-			return 1;
+			return (1);
 		}
 		i++;
 	}
@@ -34,7 +32,7 @@ int	*ft_get_array(int n, char *argv[])
 {
 	int	*array;
 	int	i;
-	int num;
+	int	num;
 
 	i = 0;
 	array = malloc(n * sizeof(int));
@@ -46,7 +44,7 @@ int	*ft_get_array(int n, char *argv[])
 		if (ft_is_duplicate(array, i, num))
 		{
 			free(array);
-			return NULL;
+			return (NULL);
 		}
 		array[i] = num;
 		i++;
@@ -65,23 +63,24 @@ void	ft_fill_stack(t_stack *pila, int *array, int n)
 		ft_nodo_a_pila(nodo, pila);
 		n--;
 	}
-	//free(array);
 }
- int	ft_count_tokens(char **tokens)
+
+int	ft_count_tokens(char **tokens)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (tokens[i])
 		i++;
 	return (i);
 }
 
-void ft_free_tokens(char **tokens)
+void	ft_free_tokens(char **tokens)
 {
-	int i;
+	int	i;
+
 	i = 0;
 	while (tokens[i])
 		free(tokens[i++]);
 	free(tokens);
 }
-
-//auxiliares arriba

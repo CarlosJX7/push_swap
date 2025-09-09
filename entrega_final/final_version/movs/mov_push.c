@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "movements.h"
 
 static int	ft_push(t_stack *pilaDonante, t_stack *pilaRecibe)

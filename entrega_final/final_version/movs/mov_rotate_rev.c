@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "movements.h"
 
 static void	ft_rotate_rev(t_stack *pila) //cortar nodo del final

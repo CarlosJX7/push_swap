@@ -12,7 +12,6 @@
 
 #include "node_managment.h"
 
-
 t_node	*ft_crear_nodo(int valor)
 {
 	t_node	*nodo;
@@ -66,4 +65,10 @@ t_node	*ft_cortar_nodo(t_stack *pila)
 	nodo->siguiente_nodo = NULL;
 	pila->cantidad_elementos--;
 	return (nodo);
+}
+
+void	ft_pilas_free(t_stack *pila_a, t_stack *pila_b)
+{
+	ft_pila_free(pila_a);
+	ft_pila_free(pila_b);
 }

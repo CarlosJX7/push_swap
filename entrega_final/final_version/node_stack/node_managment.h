@@ -10,13 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef NODE_MANAGEMENT_H
-# define NODE_MANAGEMENT_H
+#ifndef NODE_MANAGMENT_H
+# define NODE_MANAGMENT_H
 
-#include "node_stack.h"
+# include "node_stack.h"
+# include "stack_management.h"
 
 t_node	*ft_crear_nodo(int valor);
 void	ft_nodo_a_pila(t_node *new_nodo, t_stack *pila);
 t_node	*ft_cortar_nodo(t_stack *pila);
+void	ft_pilas_free(t_stack *pila_a, t_stack *pila_b);
 
 #endif

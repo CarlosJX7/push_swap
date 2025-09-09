@@ -13,9 +13,10 @@
 #ifndef MOVEMENTS_H
 # define MOVEMENTS_H
 
-#include "../node_stack/node_stack.h"
-#include "../node_stack/stack_management.h"
-#include "../node_stack/node_managment.h"
+# include "../node_stack/node_stack.h"
+# include "../node_stack/stack_management.h"
+# include "../node_stack/node_managment.h"
+
 void	ft_push_a(t_stack *pilaA, t_stack *pilaB);
 void	ft_push_b(t_stack *pilaA, t_stack *pilaB);
 void	ft_rotate_rev_a(t_stack *pila);

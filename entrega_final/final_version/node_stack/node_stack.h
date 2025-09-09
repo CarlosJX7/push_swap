@@ -10,8 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef NODE_H
-# define NODE_H
+#ifndef NODE_STACK_H
+# define NODE_STACK_H
+
 # include <stdlib.h>
 # include <unistd.h>
 

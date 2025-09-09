@@ -10,14 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STACK_H
-# define STACK_H
-#include "node_stack.h"
+#ifndef STACK_MANAGEMENT_H
+# define STACK_MANAGEMENT_H
+
+# include "node_stack.h"
 
 t_stack	*ft_pila_ini(void);
-int	*ft_stack_to_array(t_stack *pila);
+int		*ft_stack_to_array(t_stack *pila);
 void	ft_pila_free(t_stack *pila);
-int	ft_array_ordenado_check(int *array, int n);
-int	*ft_pila_to_array(t_stack *pila);
+int		ft_array_ordenado_check(int *array, int n);
+int		*ft_pila_to_array(t_stack *pila);
 
 #endif

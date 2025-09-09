@@ -12,7 +12,6 @@
 
 #include "stack_management.h"
 
-
 t_stack	*ft_pila_ini(void)
 {
 	t_stack	*pila;

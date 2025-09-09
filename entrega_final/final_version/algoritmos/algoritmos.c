@@ -12,13 +12,13 @@
 
 #include "algoritmos.h"
 
-void	ft_tres_elementos(t_stack *pilaA, t_stack *pilaB)
+void	ft_tres_elementos(t_stack *pilaA, int n_b)
 {
 	int	primero;
 	int	segundo;
 
-	primero = pilaA->primer_elemento->index - pilaB->cantidad_elementos;
-	segundo = pilaA->primer_elemento->siguiente_nodo->index - pilaB->cantidad_elementos;
+	primero = pilaA->primer_elemento->index - n_b;
+	segundo = pilaA->primer_elemento->siguiente_nodo->index - n_b;
 	if (primero == 0 && segundo != 1)
 	{
 		ft_rotate_rev_a(pilaA);
@@ -88,7 +88,7 @@ void	ft_cinco_elementos(t_stack *pilaA, t_stack *pilaB)
 		}
 		ft_movimiento(pilaA, minimo);
 	}
-	ft_tres_elementos(pilaA, pilaB);
+	ft_tres_elementos(pilaA, pilaB->cantidad_elementos);
 	ft_push_a(pilaA, pilaB);
 	ft_push_a(pilaA, pilaB);
 }

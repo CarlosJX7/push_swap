@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "minilibft.h"
-#include <stddef.h>
 
 int	ft_strlen(const char *str)
 {
@@ -53,7 +52,6 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	}
 	return (ft_strlen(src));
 }
-
 
 static void	ft_zerovalues(unsigned int *a, unsigned int *b)
 {

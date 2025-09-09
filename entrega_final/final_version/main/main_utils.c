@@ -20,7 +20,6 @@ void	ft_print_error(void)
 	exit(1);
 }
 
-
 void	ft_error_check(char **argv, int argc)
 {
 	int	i;
@@ -45,7 +44,7 @@ int	ft_algoritmos(int n, t_stack *pilaA, t_stack *pilaB)
 	}
 	if (n == 4)
 	{
-		ft_tres_elementos(pilaA, pilaB);
+		ft_tres_elementos(pilaA, pilaB->cantidad_elementos);
 		return (1);
 	}
 	if (n == 5)

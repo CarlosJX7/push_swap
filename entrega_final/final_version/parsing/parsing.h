@@ -13,15 +13,15 @@
 #ifndef PARSING_H
 # define PARSING_H
 
-#include <stdlib.h>
-#include "../main/utils.h"
-#include "../node_stack/node_managment.h"
-#include "../node_stack/node_stack.h"
+# include <stdlib.h>
+# include "../main/utils.h"
+# include "../node_stack/node_managment.h"
+# include "../node_stack/node_stack.h"
 
-int ft_is_duplicate(int *array,int size, int n);
-int	*ft_get_array(int n, char *argv[]);
+int		ft_is_duplicate(int *array, int size, int n);
+int		*ft_get_array(int n, char *argv[]);
 void	ft_fill_stack(t_stack *pila, int *array, int n);
-int	ft_count_tokens(char **tokens);
-void ft_free_tokens(char **tokens);
+int		ft_count_tokens(char **tokens);
+void	ft_free_tokens(char **tokens);
 
 #endif

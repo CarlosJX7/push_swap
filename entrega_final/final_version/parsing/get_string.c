@@ -39,7 +39,7 @@ unsigned int	ft_get_nb_strs(char const *s, char c)
 	return (nb_strs);
 }
 
- void	ft_get_next_str(char **next_str, unsigned int *next_str_len, char c)
+void	ft_get_next_str(char **next_str, unsigned int *next_str_len, char c)
 {
 	unsigned int	i;
 
