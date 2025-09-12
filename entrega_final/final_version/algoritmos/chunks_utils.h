@@ -3,8 +3,7 @@
 
 # include "../node_stack/node_stack.h"
 # include "../movs/movements.h"
-
-int	ft_stack_size(t_stack *s);
+ int	ft_stack_size(t_stack *s);
 int	ft_isqrt(int n);
 int	ft_pos_of_index(t_stack *s, int target);
 int	ft_min_index_in_stack(t_stack *s);
