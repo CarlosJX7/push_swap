@@ -2,7 +2,8 @@ NAME = push_swap
 
 SRC = \
     algoritmos/algoritmos.c \
-    algoritmos/radix.c \
+    algoritmos/chunks.c \
+    algoritmos/chunks_utils.c \
     main/main_utils.c \
     main/minilibft.c \
     main/push_swap.c \

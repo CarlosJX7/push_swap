@@ -19,7 +19,58 @@
 #include "../node_stack/stack_management.h"
 #include "../node_stack/node_managment.h"
 #include "../algoritmos/algoritmos.h"
-#include "../algoritmos/radix.h"
+//#include "../algoritmos/radix.h"
+#include "../algoritmos/chunks.h"
+
+#include <stdio.h> // para printf
+
+#include <stdio.h>
+#include <stdlib.h>
+
+/* Convierte un entero a cadena con su representación binaria */
+/* Devuelve un puntero a una cadena estática que debe ser usada o copiada antes de otra llamada */
+const char *int_to_binary(int n)
+{
+    static char bin[33];  // 32 bits + terminador
+    int i;
+
+    bin[32] = '\0';
+    for (i = 31; i >= 0; i--)
+    {
+        bin[i] = (n & 1) ? '1' : '0';
+        n >>= 1;
+    }
+    // Omitir ceros a la izquierda para mostrar solo los bits necesarios
+    // Encontrar primer 1 desde la izquierda
+    for (i = 0; i < 31; i++)
+    {
+        if (bin[i] == '1')
+            break;
+    }
+    // Retornar puntero a la posición del primer 1 o al último bit (0) si era 0
+    return &bin[i];
+}
+
+void ft_imprimir_pila(t_stack *pila)
+{
+    t_node *nodo;
+
+    if (!pila || pila->cantidad_elementos == 0)
+    {
+        printf("Pila vacía.\n");
+        return;
+    }
+
+    nodo = pila->primer_elemento;
+    printf("Elementos de la pila (valor, índice decimal, índice binario) (total: %d):\n", pila->cantidad_elementos);
+    while (nodo)
+    {
+        printf("(%d, %d, %s)\n", nodo->valor, nodo->index, int_to_binary(nodo->index));
+        nodo = nodo->siguiente_nodo;
+    }
+}
+
+
 
 int	*ft_contruir_array(char **tokens, int *array)
 {
@@ -109,7 +160,10 @@ static void	ft_process(int *array, int size)
 	ft_index_ordenado(pila_a, aux);
 	free(aux);
 	if (!ft_algoritmos(size + 1, pila_a, pila_b))
-		ft_radix(pila_a, pila_b);
+		ft_chunks(pila_a, pila_b);
+		//ft_radix(pila_a, pila_b);
+	//ft_imprimir_pila(pila_a);
+	//ft_imprimir_pila(pila_b);
 	ft_pilas_free(pila_a, pila_b);
 }
 

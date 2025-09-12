@@ -23,7 +23,7 @@ static void	ft_rotate_rev(t_stack *pila) //cortar nodo del final
 	pila->ultimo_elemento = nodo->anterior_nodo;
 	nodo->siguiente_nodo = NULL;
 	nodo->anterior_nodo = NULL;
-	pila->cantidad_elementos--;
+	pila->cantidad_elementos--; 
 	ft_nodo_a_pila(nodo, pila);
 }
 

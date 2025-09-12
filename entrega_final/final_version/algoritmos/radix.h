@@ -17,8 +17,8 @@
 # include "../movs/movements.h"
 
 int		ft_cantidad_bits(int n);
-void	ft_vaciar_b(t_stack *pilaA, t_stack *pilaB);
-void	ft_algoritmo(t_stack *pilaA, t_stack *pilaB, int bit);
+//void	ft_vaciar_b(t_stack *pilaA, t_stack *pilaB, int bit);
+//void	ft_algoritmo(t_stack *pilaA, t_stack *pilaB, int bit);
 void	ft_radix(t_stack *pilaA, t_stack *pilaB);
 
 #endif
